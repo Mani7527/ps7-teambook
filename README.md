@@ -5,7 +5,7 @@ A simple and responsive React web application built for HR and managers to explo
 ## Project Details
 - **Problem Statement Number**: PS7
 - **Project Name**: TeamBook
-- **Live Link**: [TeamBook Live App](https://ps7-teambook.vercel.app) *(or your deployed URL)*
+- **Live Link**: [https://ps7-teambook-sigma.vercel.app/](https://ps7-teambook-sigma.vercel.app/)
 
 ---
 
