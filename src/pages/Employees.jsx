@@ -6,16 +6,26 @@ function Employees() {
   const [search, setSearch] = useState('');
   const [department, setDepartment] = useState('All');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Fetch employees from API on page load
   useEffect(() => {
     fetch('https://dummyjson.com/users?limit=30')
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch employees');
+        }
+        return res.json();
+      })
       .then((data) => {
         setEmployees(data.users || []);
         setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setError('Error loading employees. Please try again.');
+        setLoading(false);
+      });
   }, []);
 
   // Filter employees by search name and department
@@ -48,13 +58,19 @@ function Employees() {
         </select>
       </div>
 
-      {loading ? (
-        <p>Loading employees...</p>
-      ) : (
+      {/* Loading & Error States */}
+      {loading && <p>Loading employees...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      {!loading && !error && (
         <div className="employee-list">
-          {filtered.map((emp) => (
-            <EmployeeCard key={emp.id} employee={emp} />
-          ))}
+          {filtered.length === 0 ? (
+            <p>No employees found.</p>
+          ) : (
+            filtered.map((emp) => (
+              <EmployeeCard key={emp.id} employee={emp} />
+            ))
+          )}
         </div>
       )}
     </div>
