@@ -50,7 +50,7 @@ function EmployeeDetail() {
       <div className="container">
         <p style={{ color: 'red', marginBottom: '10px' }}>{error || 'Employee not found.'}</p>
         <Link to="/employees" style={{ color: '#0d6efd', textDecoration: 'none' }}>
-          &larr; Back to Employees
+          ← Back to Employees
         </Link>
       </div>
     );
@@ -61,7 +61,7 @@ function EmployeeDetail() {
     <div className="container">
       {/* Back button */}
       <Link to="/employees" style={{ color: '#0d6efd', textDecoration: 'none' }}>
-        &larr; Back to Employees
+        ← Back to Employees
       </Link>
 
       <div className="detail-card">
